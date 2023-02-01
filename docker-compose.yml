@@ -1,0 +1,42 @@
+version: '3.4'
+services:
+  nginx:
+    build: './docker/nginx'
+    container_name: nginx-base
+    volumes:
+      - ./:/var/www/html/
+    depends_on:
+      - php
+      - mysql
+    ports:
+      - '${NGINX_PORT}:80'
+    networks:
+      - backend
+    restart: always
+  php:
+    build: './docker/php'
+    container_name: php-base
+    volumes:
+      - ./:/var/www/html/
+    networks:
+      - backend
+    restart: always
+  mysql:
+    platform: linux/x86_64
+    image: mysql:8.0.23
+    container_name: mysql-base
+    volumes:
+      - ./:/var/www/html/
+      - ./docker/mysql:/var/lib/mysql
+    ports:
+      - '${MYSQL_PORT}:3306'
+    networks:
+      - backend
+    environment:
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
+    restart: always
+networks:
+  backend:
