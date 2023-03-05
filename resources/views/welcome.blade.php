@@ -44,6 +44,95 @@
                         </g>
                     </svg>
                 </div>
+                <?php 
+                    interface Rumble
+                    {
+                        public function skill($a);
+                    }
+
+                    abstract class AbstractClass
+                    {
+                        // abstract function chỉ cần xác định đối số bắt buộc.
+                        abstract protected function test($x, $y);
+
+                    }
+
+                    class ChildrenClass extends AbstractClass implements Rumble
+                    {
+                        public function prefixName($name, $age) {
+                            return $name . $age;
+                        }
+
+                        public function test($x, $y)
+                        {
+                            return $x . $y;
+                        }
+
+                        public function skill($a)
+                        {
+                            return $a;
+                        }
+                    }
+
+                    /**
+                     * 
+                     */
+                    trait TraitName
+                    {
+                        public function FunctionName()
+                        {
+                            echo 111;
+                        }
+                    }
+                    /**
+                     * 
+                     */
+                    trait TraitName2
+                    {
+                        public function FunctionName2()
+                        {
+                            echo 222;
+                        }
+                    }
+
+                    class MyWebSite {
+                        protected static $domainname = "Gochocit.com";
+                        protected static $domainname2 = "AAAA";
+                    }
+
+                    class MyShop extends MyWebSite{
+                        use TraitName, TraitName2;
+                        private static $a = "hi";
+                        public function test()
+                        {
+                            echo self::$domainname2;
+                        }
+
+                        public function getDommainName() {
+                            return parent::$domainname;
+                        }
+                    }
+
+                    $shop = new MyShop();
+                    echo $shop->getDommainName();
+                    $shop->test();
+                    $shop->FunctionName();
+
+
+                    // $class = new ChildrenClass;
+                    // // echo $class->prefixName("oke", 12);
+                    // echo $class->test("A", "B");
+                    // echo "</br>";
+                    // echo $class->skill("skill");
+
+                ?>
+                <?php
+                $i = 0; //khởi tạo biến $i bằng 0
+                do {
+                    echo "$i <br>"; // thực hiện in ra $i hiện tại
+                    $i++; // cộng thêm 1 đơn vị sau mỗi lần lặp
+                } while ($i <= 10/* nếu $i mà lớn hơn 10 dừng vòng lặp*/);
+                ?>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
